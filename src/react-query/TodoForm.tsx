@@ -17,6 +17,7 @@ const TodoForm = () => {
         savedTodo,
         ...(todos || []),
       ]);
+      if (ref.current) ref.current.value = "";
     },
   });
 
