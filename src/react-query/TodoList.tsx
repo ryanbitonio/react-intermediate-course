@@ -1,11 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import useTodos from "../routing/hooks/useTodos";
+import useTodos from "./hooks/useTodos";
 
 const TodoList = () => {
   const { data: todos, error, isLoading } = useTodos();
-  // const [todos, setTodos] = useState<Todo[]>([]);
-  // const [error, setError] = useState("");
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
