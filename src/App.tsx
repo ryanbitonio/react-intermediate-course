@@ -4,15 +4,14 @@ import LoginStatus from "./state-management/LoginStatus";
 import authReducer from "./state-management/reducers/authReducer";
 import AuthContext from "./state-management/contexts/authContext";
 import TaskList from "./state-management/TaskList";
+import AuthProvider from "./state-management/AuthProvider";
 
 function App() {
-  const [user, authDispatch] = useReducer(authReducer, "");
-
   return (
-    <AuthContext.Provider value={{ user, dispatch: authDispatch }}>
+    <AuthProvider>
       <TaskList />
       <LoginStatus />
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 
