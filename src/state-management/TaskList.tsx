@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from "react";
+import AuthContext from "./contexts/authContext";
 
 interface Task {
   id: number;
@@ -7,22 +8,21 @@ interface Task {
 
 const TaskList = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const { user } = useContext(AuthContext);
 
   return (
     <>
+      <p>User: {user}</p>
       <button
         onClick={() =>
-          setTasks([
-            { id: Date.now(), title: 'Task ' + Date.now() },
-            ...tasks,
-          ])
+          setTasks([{ id: Date.now(), title: "Task " + Date.now() }, ...tasks])
         }
         className="btn btn-primary my-3"
       >
         Add Task
       </button>
       <ul className="list-group">
-        {tasks.map((task) => (
+        {tasks.map(task => (
           <li
             key={task.id}
             className="list-group-item d-flex justify-content-between align-items-center"
@@ -30,9 +30,7 @@ const TaskList = () => {
             <span className="flex-grow-1">{task.title}</span>
             <button
               className="btn btn-outline-danger"
-              onClick={() =>
-                setTasks(tasks.filter((t) => t.id !== task.id))
-              }
+              onClick={() => setTasks(tasks.filter(t => t.id !== task.id))}
             >
               Delete
             </button>
